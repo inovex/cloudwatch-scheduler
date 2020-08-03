@@ -33,3 +33,10 @@ func (client Scheduler) Schedule(t time.Time) error {
 	_, err := client.cw.PutRule(&input)
 	return err
 }
+
+// Unschedule disables the scheduler until another future task is created.
+// It achieves this by specifying a past date for the Cloudwatch rule.
+func (client Scheduler) Unschedule() error {
+	t := time.Date(1970, 1, 1, 0, 0, 0, 0, time.UTC)
+	return client.Schedule(t)
+}
