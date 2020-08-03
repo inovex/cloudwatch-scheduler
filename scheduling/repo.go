@@ -35,3 +35,9 @@ func (r TaskRepository) DeleteTask(id string) error {
 		Delete("ID", id).
 		Run()
 }
+
+func (r TaskRepository) Done(task Task) error {
+	return r.table.
+		Delete("ID", task.ID).
+		Run()
+}
