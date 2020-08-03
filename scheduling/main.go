@@ -6,7 +6,6 @@ import (
 	"github.com/urfave/cli/v2"
 	"net/http"
 	"os"
-	"task-editor/scheduling"
 )
 
 const (
@@ -74,7 +73,6 @@ func setAWSEnv(c *cli.Context) {
 	}
 }
 
-
 func main() {
 	app := buildCLI()
 	if err := app.Run(os.Args); err != nil {
@@ -85,9 +83,7 @@ func main() {
 func startServer(ctx *cli.Context) error {
 	setAWSEnv(ctx)
 	r := chi.NewRouter()
-	scheduling.NewEditor(
-		"cwscheduler-task-worker_schedule",
-		"cwscheduler-jobs",
-	).ConfigureRoutes(r)
+	e := newEditor("cwscheduler-task-worker_schedule", "cwscheduler-jobs")
+	e.configureRoutes(r)
 	return http.ListenAndServe(":8080", r)
 }

@@ -1,4 +1,4 @@
-package scheduling
+package main
 
 import (
 	"encoding/json"
