@@ -1,3 +1,11 @@
 .idea/
 .iml
 .aws.*
+
+*.terraform
+terraform/function.zip
+
+*coverage.txt
+
+editor/editor
+worker/worker
