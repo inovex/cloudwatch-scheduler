@@ -2,6 +2,7 @@ package scheduling
 
 import (
 	"github.com/go-chi/chi"
+	"task-editor/cloudwatch"
 )
 
 type SchedulerEditor struct {
@@ -12,7 +13,7 @@ func NewEditor(schedulerRule string, taskTable string) SchedulerEditor {
 	return SchedulerEditor{
 		service: Service{
 			repo:      newDynamoRepo(taskTable),
-			scheduler: newCloudwatchClient(schedulerRule),
+			scheduler: cloudwatch.Client(schedulerRule),
 		},
 	}
 }

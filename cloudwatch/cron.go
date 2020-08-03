@@ -1,4 +1,4 @@
-package cron
+package cloudwatch
 
 import (
 	"strconv"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type Expression struct {
+type cronExpression struct {
 	Minute     string
 	Hour       string
 	DayOfMonth string
@@ -15,11 +15,11 @@ type Expression struct {
 	Year       string
 }
 
-// OnlyAt returns the time expression of a cronjob that runs once a year, exactly at the specified date and time.
+// onlyAt returns the time expression of a cronjob that runs once a year, exactly at the specified date and time.
 // The year given within t is ignored.
-func OnlyAt(t time.Time) Expression {
+func onlyAt(t time.Time) cronExpression {
 	year, month, dayOfMonth := t.Date()
-	return Expression{
+	return cronExpression{
 		Minute:     strconv.Itoa(t.Minute()),
 		Hour:       strconv.Itoa(t.Hour()),
 		DayOfMonth: strconv.Itoa(dayOfMonth),
@@ -30,7 +30,7 @@ func OnlyAt(t time.Time) Expression {
 }
 
 // String returns the string representation of the cron expression
-func (e Expression) String() string {
+func (e cronExpression) String() string {
 	return strings.Join([]string{
 		e.Minute,
 		e.Hour,
