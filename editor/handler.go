@@ -5,11 +5,11 @@ import (
 	"github.com/go-chi/chi"
 	"net/http"
 	"strings"
-	"task-editor/models"
+	"task-editor/scheduling"
 )
 
 type taskLister interface {
-	ListTasks() ([]models.Task, error)
+	ListTasks() ([]scheduling.Task, error)
 }
 
 func listTasks(l taskLister) http.HandlerFunc {
@@ -24,12 +24,12 @@ func listTasks(l taskLister) http.HandlerFunc {
 }
 
 type taskAdder interface {
-	AddTask(task models.Task) error
+	AddTask(task scheduling.Task) error
 }
 
 func createTask(a taskAdder) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
-		var task models.Task
+		var task scheduling.Task
 		err := json.NewDecoder(request.Body).Decode(&task)
 		if err != nil {
 			http.Error(writer, "error decoding body as json", http.StatusBadRequest)

@@ -1,39 +1,37 @@
-package main
+package scheduling
 
 import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/guregu/dynamo"
-	"task-editor/models"
 )
 
-type dynamoRepo struct {
+type TaskRepository struct {
 	table dynamo.Table
 }
 
-func newDynamoRepo(taskTable string) dynamoRepo {
+func NewTaskRepository(taskTable string) TaskRepository {
 	db := dynamodb.New(session.Must(session.NewSessionWithOptions(session.Options{})))
 	t := dynamo.NewFromIface(db).Table(taskTable)
-	return dynamoRepo{table: t}
+	return TaskRepository{table: t}
 }
 
-func (r dynamoRepo) GetTasks() ([]models.Task, error) {
-	var out []models.Task
+func (r TaskRepository) GetTasks() ([]Task, error) {
+	var out []Task
 	err := r.table.
 		Scan().
 		All(&out)
 	return out, err
 }
 
-func (r dynamoRepo) AddTask(task models.Task) error {
+func (r TaskRepository) AddTask(task Task) error {
 	return r.table.
 		Put(task).
 		Run()
 }
 
-func (r dynamoRepo) DeleteTask(id string) error {
+func (r TaskRepository) DeleteTask(id string) error {
 	return r.table.
 		Delete("ID", id).
 		Run()
 }
-

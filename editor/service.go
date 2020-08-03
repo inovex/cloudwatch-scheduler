@@ -1,14 +1,14 @@
 package main
 
 import (
-	"task-editor/models"
+	"task-editor/scheduling"
 	"time"
 )
 
 
 type Repository interface {
-	GetTasks() ([]models.Task, error)
-	AddTask(models.Task) error
+	GetTasks() ([]scheduling.Task, error)
+	AddTask(scheduling.Task) error
 	DeleteTask(id string) error
 }
 
@@ -21,11 +21,11 @@ type Service struct {
 	scheduler WorkerScheduler
 }
 
-func (s Service) ListTasks() ([]models.Task, error) {
+func (s Service) ListTasks() ([]scheduling.Task, error) {
 	return s.repo.GetTasks()
 }
 
-func isFirstTask(task models.Task, allTasks []models.Task) bool {
+func isFirstTask(task scheduling.Task, allTasks []scheduling.Task) bool {
 	for _, existing := range allTasks {
 		if existing.Due.Unix() < task.Due.Unix() {
 			return false
@@ -34,7 +34,7 @@ func isFirstTask(task models.Task, allTasks []models.Task) bool {
 	return true
 }
 
-func (s Service) AddTask(task models.Task) error {
+func (s Service) AddTask(task scheduling.Task) error {
 	// get all tasks or return error
 	tasks, err := s.repo.GetTasks()
 	if err != nil {
