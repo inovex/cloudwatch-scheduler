@@ -23,6 +23,11 @@ func (p processor) processTasks() error {
 		return err
 	}
 
+	// sort tasks by due date
+	sort.Slice(tasks, func(i, j int) bool {
+		return tasks[i].Due.Unix() < tasks[j].Due.Unix()
+	})
+
 	// process tasks
 	for _, task := range tasks {
 		// see if task is due
