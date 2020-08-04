@@ -1,7 +1,7 @@
 package main
 
 import (
-	"task-editor/scheduling"
+	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"time"
 )
 

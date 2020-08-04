@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"task-editor/cloudwatch"
-	"task-editor/scheduling"
+	"github.com/dtext/cloudwatch-scheduler/cloudwatch"
+	"github.com/dtext/cloudwatch-scheduler/scheduling"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-module task-editor
+module github.com/dtext/cloudwatch-scheduler
 
 go 1.14
 

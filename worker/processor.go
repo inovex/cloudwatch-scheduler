@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/dtext/cloudwatch-scheduler/cloudwatch"
+	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"github.com/mitchellh/mapstructure"
-	"task-editor/cloudwatch"
-	"task-editor/scheduling"
 	"time"
 )
 

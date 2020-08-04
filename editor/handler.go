@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"github.com/go-chi/chi"
 	"net/http"
 	"strings"
-	"task-editor/scheduling"
 )
 
 type taskLister interface {
