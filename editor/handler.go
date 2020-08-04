@@ -16,7 +16,7 @@ func listTasks(l taskLister) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		tasks, err := l.ListTasks()
 		if err != nil {
-			http.Error(writer, "error listing tasks: " + err.Error(), http.StatusInternalServerError)
+			http.Error(writer, "error listing tasks: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 		_ = json.NewEncoder(writer).Encode(tasks)
@@ -35,9 +35,13 @@ func createTask(a taskAdder) http.HandlerFunc {
 			http.Error(writer, "error decoding body as json", http.StatusBadRequest)
 			return
 		}
+		if !task.Valid() {
+			http.Error(writer, "given task is not valid for scheduling", http.StatusBadRequest)
+			return
+		}
 		err = a.AddTask(task)
 		if err != nil {
-			http.Error(writer, "error writing new task: " + err.Error(), http.StatusInternalServerError)
+			http.Error(writer, "error writing new task: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 		writer.WriteHeader(http.StatusOK)
@@ -56,7 +60,7 @@ func deleteTask(d taskDeleter) http.HandlerFunc {
 			writer.WriteHeader(http.StatusOK)
 			return
 		} else if err != nil {
-			http.Error(writer, "error deleting item: " + err.Error(), http.StatusInternalServerError)
+			http.Error(writer, "error deleting item: "+err.Error(), http.StatusInternalServerError)
 		}
 		writer.WriteHeader(http.StatusOK)
 	}
