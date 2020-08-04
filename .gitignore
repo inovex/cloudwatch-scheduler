@@ -8,4 +8,4 @@ terraform/function.zip
 *coverage.txt
 
 editor/editor
-worker/worker
+worker/main

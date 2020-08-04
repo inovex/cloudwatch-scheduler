@@ -5,7 +5,7 @@ coverage: test
 	go tool cover -html=coverage.txt
 
 build:
-	go build -o worker
+	go build -o main
 
 lint:
 	golint ./...
