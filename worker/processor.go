@@ -5,10 +5,12 @@ import (
 	"github.com/dtext/cloudwatch-scheduler/cloudwatch"
 	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"github.com/mitchellh/mapstructure"
+	"sort"
 	"time"
 )
 
 type processor struct {
+	upTo      time.Time
 	items     ItemService
 	tasks     scheduling.TaskRepository
 	scheduler cloudwatch.Scheduler
@@ -24,7 +26,7 @@ func (p processor) processTasks() error {
 	// process tasks
 	for _, task := range tasks {
 		// see if task is due
-		if task.Due.Unix() > time.Now().Unix() {
+		if task.Due.Unix() > p.upTo.Unix() {
 			// if it isn't, schedule it and exit
 			return p.scheduler.Schedule(task.Due)
 		}
