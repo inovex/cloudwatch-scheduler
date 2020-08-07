@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2020 inovex GmbH <https://www.inovex.de>
+//
+// SPDX-License-Identifier: MIT
 package main
 
 import "fmt"

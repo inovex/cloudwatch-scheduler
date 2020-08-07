@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2020 inovex GmbH <https://www.inovex.de>
+//
+// SPDX-License-Identifier: MIT
+
 module github.com/dtext/cloudwatch-scheduler
 
 go 1.14

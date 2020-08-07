@@ -1,10 +1,12 @@
+// SPDX-FileCopyrightText: 2020 inovex GmbH <https://www.inovex.de>
+//
+// SPDX-License-Identifier: MIT
 package main
 
 import (
 	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"time"
 )
-
 
 type Repository interface {
 	GetTasks() ([]scheduling.Task, error)

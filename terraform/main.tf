@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 inovex GmbH <https://www.inovex.de>
+#
+# SPDX-License-Identifier: MIT
+
 provider "aws" {
   region  = "eu-central-1"
   version = "~> 2.29"

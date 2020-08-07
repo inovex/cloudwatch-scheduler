@@ -1,2 +1,6 @@
+# SPDX-FileCopyrightText: 2020 inovex GmbH <https://www.inovex.de>
+#
+# SPDX-License-Identifier: MIT
+
 [{.aws.access,.aws.secret}]
 insert_final_newline = false
