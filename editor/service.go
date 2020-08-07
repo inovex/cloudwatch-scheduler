@@ -4,7 +4,7 @@
 package main
 
 import (
-	"github.com/dtext/cloudwatch-scheduler/scheduling"
+	"github.com/inovex/cloudwatch-scheduler/scheduling"
 	"time"
 )
 

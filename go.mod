@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-module github.com/dtext/cloudwatch-scheduler
+module github.com/inovex/cloudwatch-scheduler
 
 go 1.14
 

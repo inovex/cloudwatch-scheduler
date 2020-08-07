@@ -5,8 +5,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/dtext/cloudwatch-scheduler/cloudwatch"
-	"github.com/dtext/cloudwatch-scheduler/scheduling"
+	"github.com/inovex/cloudwatch-scheduler/cloudwatch"
+	"github.com/inovex/cloudwatch-scheduler/scheduling"
 	"github.com/urfave/cli/v2"
 	"os"
 	"time"

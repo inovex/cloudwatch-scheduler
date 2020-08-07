@@ -5,8 +5,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"github.com/go-chi/chi"
+	"github.com/inovex/cloudwatch-scheduler/scheduling"
 	"net/http"
 	"strings"
 )

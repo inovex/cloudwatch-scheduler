@@ -4,9 +4,9 @@
 package main
 
 import (
-	"github.com/dtext/cloudwatch-scheduler/cloudwatch"
-	"github.com/dtext/cloudwatch-scheduler/scheduling"
 	"github.com/go-chi/chi"
+	"github.com/inovex/cloudwatch-scheduler/cloudwatch"
+	"github.com/inovex/cloudwatch-scheduler/scheduling"
 )
 
 type editor struct {
