@@ -40,7 +40,7 @@ resource "aws_lambda_function" "lambda" {
 
   depends_on = [
     aws_iam_role_policy_attachment.lambda_logs,
-    aws_iam_role_policy_attachment.dynamodb
+    aws_iam_role_policy_attachment.attachment
   ]
 }
 
@@ -93,16 +93,16 @@ resource "aws_iam_policy" "lambda_logging" {
 EOF
 }
 
-# Dynamo DB access
-resource "aws_iam_role_policy_attachment" "dynamodb" {
+# Dynamo DB and EventBridge access
+resource "aws_iam_role_policy_attachment" "attachment" {
   role       = aws_iam_role.lambda_exec.name
-  policy_arn = aws_iam_policy.dynamodb.arn
+  policy_arn = aws_iam_policy.worker.arn
 }
 
-resource "aws_iam_policy" "dynamodb" {
-  name        = "${local.base_name}_dynamodb"
+resource "aws_iam_policy" "worker" {
+  name        = "${local.base_name}_worker"
   path        = "/"
-  description = "IAM policy for dynamo DB access"
+  description = "IAM policy for dynamo DB and EventBridge access"
 
   policy = <<EOF
 {
@@ -110,7 +110,8 @@ resource "aws_iam_policy" "dynamodb" {
     "Statement": [
         {
             "Action": [
-                "dynamodb:*"
+                "dynamodb:*",
+                "events:PutRule"
             ],
             "Effect": "Allow",
             "Resource": "*"
@@ -141,7 +142,7 @@ resource "aws_dynamodb_table" "job_table" {
 resource "aws_cloudwatch_event_rule" "schedule" {
   name                = "${local.base_name}_schedule"
   description         = "Runs the worker lambda when the next job needs to be executed"
-  schedule_expression = "cron(* * 1 1 ? 1970)"
+  schedule_expression = "cron(0 0 1 1 ? 1970)"
 }
 
 resource "aws_cloudwatch_event_target" "target" {
