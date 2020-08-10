@@ -4,7 +4,7 @@
 
 .idea/
 .iml
-.aws.*
+*.aws.*
 
 *.terraform
 terraform/function.zip
