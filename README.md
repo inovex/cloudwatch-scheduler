@@ -1,5 +1,5 @@
 # cloudwatch-scheduler
-Example implementation for a serverless scheduling solution described in the [blog article](https://www.inovex.de/blog/schedule-aws-lambda) "Schedule AWS Lambda Invocations: How to Build Slow Schedulers".
+Example implementation for a serverless scheduling solution described in the [blog article](https://www.inovex.de/blog/schedule-aws-lambda-invocations-how-slow-schedulers/) "Schedule AWS Lambda Invocations: How to Build Slow Schedulers".
 
 ## What it does
 This is a *very slow* scheduler implementation based on a classical serverless AWS stack:
@@ -18,7 +18,7 @@ There are Makefiles for both targets in their respective directories.
 
 I included some basic terraform code for the worker lambda function and for the Cloudwatch/EventBridge rule in the `terraform/` directory.
 You can easily build everything and deploy it to your AWS account as-is to play around with it.
-However, if you end up using (some of) this code, you should probably read the [article](https://www.inovex.de/blog/schedule-aws-lambda) and get a more conceptual understanding of how everything comes together.
+However, if you end up using (some of) this code, you should probably read the [article](https://www.inovex.de/blog/schedule-aws-lambda-invocations-how-slow-schedulers/) and get a more conceptual understanding of how everything comes together.
 
 ### Editor
 To create a binary:
